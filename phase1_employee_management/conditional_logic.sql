@@ -26,3 +26,11 @@ SELECT first_name, last_name, job_id, salary,
            ELSE 'Grade C'
        END AS salary_grade
 FROM employees;
+
+-- Day 5: NVL2 Mechanics
+-- Concept: NVL2 evaluates three parameters: NVL2(expression, value_if_not_null, value_if_null).
+-- It is cleaner than standard CASE when translating values depending on presence.
+
+SELECT first_name, last_name,
+       NVL2(commission_pct, 'Commission Earned', 'Base Salary Only') AS payroll_profile
+FROM employees;
