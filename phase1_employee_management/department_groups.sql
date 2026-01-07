@@ -20,3 +20,13 @@ SELECT department_id,
 FROM employees
 GROUP BY department_id
 HAVING COUNT(*) > 1;
+
+-- Day 7: Logical SQL Query Execution Order
+-- Concept: Oracle processes queries in the following sequence:
+--   1. FROM (Retrieve base tables & joins)
+--   2. WHERE (Filter records)
+--   3. GROUP BY (Aggregate rows into groups)
+--   4. HAVING (Filter groups)
+--   5. SELECT (Evaluate expressions, functions, formatting)
+--   6. ORDER BY (Sort final output rows)
+-- Because SELECT runs late, aliases defined in the SELECT list cannot be evaluated in WHERE or GROUP BY.
