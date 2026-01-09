@@ -16,3 +16,12 @@ SELECT c.first_name, c.last_name, o.order_id
 FROM customers c
 LEFT JOIN orders o ON c.customer_id = o.customer_id
 WHERE o.order_id IS NULL;
+
+-- Day 9: Legacy Join Syntax (+)
+-- Concept: Historically, Oracle executed outer joins using the proprietary (+) marker on the NULL-receiving side.
+-- Avoid legacy syntax since it is harder to read, error-prone for compound outer joins, and non-portable.
+
+-- Legacy Oracle Left Join:
+SELECT c.first_name, o.order_id
+FROM customers c, orders o
+WHERE c.customer_id = o.customer_id(+);
