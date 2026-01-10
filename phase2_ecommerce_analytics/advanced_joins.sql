@@ -17,3 +17,10 @@ SELECT p1.product_name AS product_a, p2.product_name AS product_b
 FROM products p1
 CROSS JOIN products p2
 WHERE p1.product_id < p2.product_id;
+
+-- Day 10: Join Mechanisms - Optimizer Decisions
+-- Concept: The Oracle Optimizer chooses how to execute joins:
+--   1. Nested Loops: Scans the inner table for each row in the outer table. 
+--      Excellent for small datasets and quick first-row lookups.
+--   2. Hash Join: Builds an in-memory hash table from the smaller dataset, 
+--      then probes it using the larger dataset. Highly efficient for large datasets.
