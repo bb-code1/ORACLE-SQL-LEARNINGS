@@ -16,3 +16,8 @@ FROM products;
 SELECT product_name, price
 FROM products
 WHERE price >= ALL (SELECT price FROM products WHERE category = 'Electronics');
+
+-- Day 11: Subquery Unnesting
+-- Concept: Oracle's Cost-Based Optimizer (CBO) attempts to unnest (refactor) subqueries 
+-- into standard joins whenever possible. This allows for more join methods (e.g. hash joins) 
+-- and parallel execution paths.
