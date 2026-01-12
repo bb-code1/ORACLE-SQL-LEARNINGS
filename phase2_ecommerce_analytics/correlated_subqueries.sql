@@ -10,3 +10,18 @@ WHERE p.price > (
     FROM products sub
     WHERE sub.category = p.category
 );
+
+-- Day 12: EXISTS vs IN
+-- Concept:
+--   EXISTS: Evaluates to TRUE as soon as the first matching row is found in the subquery (short-circuit evaluation).
+--           It does not return any data rows, making it highly efficient.
+--   NOT EXISTS: Returns TRUE only if zero matching records are located.
+
+SELECT c.first_name, c.last_name
+FROM customers c
+WHERE EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.customer_id = c.customer_id
+      AND o.total_amount > 100
+);
