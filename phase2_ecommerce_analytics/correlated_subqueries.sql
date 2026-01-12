@@ -25,3 +25,10 @@ WHERE EXISTS (
     WHERE o.customer_id = c.customer_id
       AND o.total_amount > 100
 );
+
+-- Day 12: The NOT IN NULL Trap
+-- Concept: If a subquery evaluated by a NOT IN operator returns even a single NULL value, 
+-- the entire query will return zero rows. This is because (val NOT IN (val1, NULL)) translates 
+-- logically to (val != val1 AND val != NULL). Since (val != NULL) returns UNKNOWN, 
+-- the compound AND evaluation yields UNKNOWN, filtering out all rows.
+-- Use NOT EXISTS instead, which is immune to this issue.
