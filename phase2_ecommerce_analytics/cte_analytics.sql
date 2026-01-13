@@ -11,3 +11,22 @@ WITH customer_spending AS (
 SELECT c.first_name, c.last_name, cs.total_spent
 FROM customers c
 JOIN customer_spending cs ON c.customer_id = cs.customer_id;
+
+-- Day 13: Recursive CTEs
+-- Concept: Recursive CTEs consist of an Anchor member (base case) and a Recursive member 
+-- linked by a UNION ALL. The recursive member references the CTE itself, executing iteratively 
+-- until no further rows are returned.
+
+WITH category_tree (category_id, category_name, parent_id, path_string) AS (
+    -- Anchor Member
+    SELECT category_id, category_name, parent_category_id, CAST(category_name AS VARCHAR2(200))
+    FROM product_categories
+    WHERE parent_category_id IS NULL
+    UNION ALL
+    -- Recursive Member
+    SELECT child.category_id, child.category_name, child.parent_category_id,
+           CAST(parent.path_string || ' -> ' || child.category_name AS VARCHAR2(200))
+    FROM product_categories child
+    JOIN category_tree parent ON child.parent_category_id = parent.category_id
+)
+SELECT category_id, path_string FROM category_tree;
