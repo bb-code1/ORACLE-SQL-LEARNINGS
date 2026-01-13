@@ -30,3 +30,11 @@ WITH category_tree (category_id, category_name, parent_id, path_string) AS (
     JOIN category_tree parent ON child.parent_category_id = parent.category_id
 )
 SELECT category_id, path_string FROM category_tree;
+
+-- Day 13: Materialization vs Inline Expansion
+-- Concept: Oracle has two strategies for executing CTEs:
+--   1. INLINE (default / internal expansion): The CTE text is substituted directly 
+--      into the main query, similar to an inline view.
+--   2. MATERIALIZED: Oracle creates a temporary table to store the CTE output, 
+--      then joins against it. This is useful for expensive CTEs referenced multiple times.
+--   Hints /*+ INLINE */ and /*+ MATERIALIZE */ can force these behaviors.
