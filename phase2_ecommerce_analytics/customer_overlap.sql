@@ -16,3 +16,16 @@ COMMIT;
 SELECT email FROM campaign_mail
 UNION ALL
 SELECT email FROM campaign_sms;
+
+-- Day 14: Set Operators - INTERSECT and MINUS
+-- Concept:
+--   INTERSECT: Returns only rows that exist in *both* query datasets.
+--   MINUS: Returns rows from the first query that do *not* exist in the second.
+
+SELECT email FROM campaign_mail
+INTERSECT
+SELECT email FROM campaign_sms;
+
+SELECT email FROM campaign_mail
+MINUS
+SELECT email FROM campaign_sms;
