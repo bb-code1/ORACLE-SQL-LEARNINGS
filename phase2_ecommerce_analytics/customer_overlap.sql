@@ -29,3 +29,13 @@ SELECT email FROM campaign_sms;
 SELECT email FROM campaign_mail
 MINUS
 SELECT email FROM campaign_sms;
+
+-- Day 14: Set Rules
+-- Concept: 
+--   1. Both queries must select the same number of columns.
+--   2. Matching columns must have compatible data types.
+--   3. Column names in the final result set are inherited from the *first* SELECT query.
+--   4. ORDER BY must reside at the very end of the compound query, referencing columns from the first SELECT.
+
+DROP TABLE campaign_mail;
+DROP TABLE campaign_sms;
