@@ -10,3 +10,14 @@ SELECT product_name, category, price,
        RANK() OVER (PARTITION BY category ORDER BY price DESC) AS rk,
        DENSE_RANK() OVER (PARTITION BY category ORDER BY price DESC) AS drk
 FROM products;
+
+-- Day 15: Analytic Functions - LAG and LEAD
+-- Concept: Offset functions access other rows in the same result set 
+-- without executing a self-join.
+--   LAG(col, offset): Accesses rows *prior* to the current row.
+--   LEAD(col, offset): Accesses rows *following* the current row.
+
+SELECT order_id, customer_id, order_date, total_amount,
+       LAG(total_amount, 1) OVER (PARTITION BY customer_id ORDER BY order_date) AS previous_order_amt,
+       LEAD(total_amount, 1) OVER (PARTITION BY customer_id ORDER BY order_date) AS next_order_amt
+FROM orders;
