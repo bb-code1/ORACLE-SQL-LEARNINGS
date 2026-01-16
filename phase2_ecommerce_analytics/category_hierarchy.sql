@@ -22,3 +22,9 @@ SELECT LEVEL,
 FROM product_categories
 START WITH parent_category_id IS NULL
 CONNECT BY PRIOR category_id = parent_category_id;
+
+-- Day 16: Hierarchy Comparison
+-- Concept:
+--   1. CONNECT BY is cleaner and more concise for basic hierarchical queries.
+--   2. ANSI recursive CTEs are standard, support complex multi-table joins during recursion, 
+--      and are portable to other database systems (like PostgreSQL, SQL Server).
