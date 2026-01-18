@@ -11,3 +11,16 @@ SELECT c.customer_id, c.first_name, c.last_name,
 FROM customers c
 LEFT JOIN orders o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name;
+
+-- Day 18: Materialized Views
+-- Concept: Unlike standard views, Materialized Views precompute and store their results in a table.
+-- They improve performance for expensive queries over large datasets, but must be refreshed 
+-- when the underlying data changes.
+--   REFRESH COMPLETE ON DEMAND: Refreshes the view on request by rebuilding the entire dataset.
+
+CREATE MATERIALIZED VIEW mv_category_summary
+REFRESH COMPLETE ON DEMAND
+AS
+SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price
+FROM products
+GROUP BY category;
