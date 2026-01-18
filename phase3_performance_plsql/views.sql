@@ -24,3 +24,10 @@ AS
 SELECT category, COUNT(*) AS product_count, AVG(price) AS avg_price
 FROM products
 GROUP BY category;
+
+-- Day 18: Query Rewrite and FAST Refresh
+-- Concept:
+--   1. QUERY REWRITE: If enabled (`ENABLE QUERY REWRITE`), the optimizer automatically redirects 
+--      queries on base tables to fetch from a materialized view if it contains the needed precomputed aggregates.
+--   2. REFRESH FAST: Uses materialized view logs (`CREATE MATERIALIZED VIEW LOG ON table`) to record changes 
+--      and apply incremental updates, avoiding complete rebuilds.
