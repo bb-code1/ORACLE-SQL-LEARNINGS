@@ -22,3 +22,11 @@ CREATE INDEX idx_orders_date ON orders(order_date);
 
 -- Function-Based Index:
 CREATE INDEX idx_cust_email_lower ON customers(LOWER(email));
+
+-- Day 19: Bitmap Indexing
+-- Concept:
+--   1. Bitmap Index: Uses bit vectors to map matching rows. Good for low-cardinality columns 
+--      (e.g., gender, status) in read-heavy data warehouses.
+--   2. Row Locking Hazard: Modifying a row in a table with a bitmap index locks the entire 
+--      bitmap segment, blocking concurrent inserts or updates on rows mapped to that segment. 
+--      Do not use bitmap indexes in OLTP (Transactional) systems.
