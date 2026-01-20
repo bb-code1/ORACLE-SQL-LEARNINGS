@@ -23,3 +23,8 @@ SELECT /*+ INDEX(c idx_cust_email_lower) */ *
 FROM customers c 
 WHERE LOWER(email) = 'alice@email.com';
 ```
+
+### Key Optimizer Terms:
+1. **Full Table Scan (FTS)**: Reads every block in the table. Efficient for reading large portions of a table.
+2. **Index Range Scan**: Scans an index for a range of values.
+3. **Table Access by Index ROWID**: Retrieves specific rows from the table using row coordinates found in the index.
