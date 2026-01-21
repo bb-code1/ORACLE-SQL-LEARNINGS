@@ -26,3 +26,10 @@ COMMIT;
 
 -- Session lock check:
 -- SELECT balance FROM account_balances WHERE account_id = 1 FOR UPDATE;
+
+-- Day 21: Oracle MVCC (Multi-Version Concurrency Control)
+-- Concept: Oracle does not lock rows for read operations. 
+--   "Readers do not block writers, and writers do not block readers."
+--   When a row is modified, the original data is written to the UNDO tablespace. 
+--   Other sessions read the original values from UNDO, ensuring they see a consistent snapshot 
+--   of the data as of the start of their query.
