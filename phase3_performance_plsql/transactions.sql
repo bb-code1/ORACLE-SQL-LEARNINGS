@@ -17,3 +17,12 @@ UPDATE account_balances SET balance = balance - 500 WHERE account_id = 1;
 -- Rollback to the savepoint if the credit step fails:
 -- ROLLBACK TO before_transfer;
 COMMIT;
+
+-- Day 21: Locking Mechanisms
+-- Concept: Locks manage concurrent access to database rows.
+--   Row Locks (TX): Automatically acquired during UPDATE/DELETE statements.
+--   SELECT ... FOR UPDATE: Locks selected rows, blocking other sessions from 
+--                          modifying them until the current transaction commits or rolls back.
+
+-- Session lock check:
+-- SELECT balance FROM account_balances WHERE account_id = 1 FOR UPDATE;
