@@ -31,3 +31,9 @@ BEGIN
     RETURN ROUND(p_amount * p_tax_rate, 2);
 END fn_calculate_tax;
 /
+
+-- Day 23: Parameter Modes
+-- Concept:
+--   IN (default): The parameter value is passed into the subprogram. It is read-only within the code.
+--   OUT: Ignored on entry. The subprogram assigns a value to the parameter and returns it to the caller.
+--   IN OUT: Passed in, can be modified inside the subprogram, and the updated value is returned to the caller.
