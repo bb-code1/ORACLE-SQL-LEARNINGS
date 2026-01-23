@@ -17,3 +17,17 @@ BEGIN
     END IF;
 END sp_adjust_stock;
 /
+
+-- Day 23: PL/SQL Stored Functions
+-- Concept: Functions must return a single value using a RETURN statement.
+-- Stored functions can be called directly in SQL queries, but this can introduce 
+-- context switch overhead.
+
+CREATE OR REPLACE FUNCTION fn_calculate_tax (
+    p_amount IN NUMBER,
+    p_tax_rate IN NUMBER DEFAULT 0.08
+) RETURN NUMBER IS
+BEGIN
+    RETURN ROUND(p_amount * p_tax_rate, 2);
+END fn_calculate_tax;
+/
