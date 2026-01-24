@@ -35,3 +35,8 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Captured unexpected error: ' || SQLERRM);
 END;
 /
+
+-- Day 24: RAISE_APPLICATION_ERROR
+-- Concept: RAISE_APPLICATION_ERROR raises a user-defined exception with a custom 
+-- error number (-20000 to -20999) and message. It terminates the PL/SQL block and returns 
+-- the error directly to the caller.
