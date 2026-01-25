@@ -30,3 +30,10 @@ CREATE OR REPLACE PACKAGE BODY pkg_operations AS
     END sp_add_product;
 END pkg_operations;
 /
+
+-- Day 25: Package Encapsulation and Package State
+-- Concept:
+--   1. Encapsulation: Hiding implementation details in the package body protects code 
+--      and allows changes without breaking dependent objects.
+--   2. Package State: Package variables persist for the duration of the user session, 
+--      storing state across multiple database calls.
