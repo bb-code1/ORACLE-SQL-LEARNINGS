@@ -13,3 +13,20 @@ BEGIN
     VALUES (:old.account_number, :old.balance, :new.balance, USER, SYSTIMESTAMP);
 END;
 /
+
+-- Day 27: Mutating Table Error (ORA-04091)
+-- Concept: A mutating table is a table that is currently being modified 
+-- by a DML statement (insert, update, delete).
+-- A row-level trigger cannot query or modify a mutating table, as this could lead to inconsistent data states.
+-- Oracle raises ORA-04091 if a row trigger attempts to query the table it is defined on.
+-- Avoid mutating errors by using statement-level triggers, compound triggers, or refactoring logic to procedures.
+
+CREATE OR REPLACE TRIGGER trg_prevent_overdraft
+BEFORE UPDATE OF balance ON accounts
+FOR EACH ROW
+BEGIN
+    IF :new.balance < 0 THEN
+        RAISE_APPLICATION_ERROR(-20101, 'Transaction declined: Insufficient funds. Overdrafts not permitted.');
+    END IF;
+END;
+/
