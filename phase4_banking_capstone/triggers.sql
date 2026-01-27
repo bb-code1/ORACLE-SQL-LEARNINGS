@@ -30,3 +30,10 @@ BEGIN
     END IF;
 END;
 /
+
+-- Day 27: Trigger Variables Scopes
+-- Concept:
+--   1. :OLD references pre-update values (available in UPDATE/DELETE triggers).
+--   2. :NEW references post-update values (available in INSERT/UPDATE triggers).
+--   3. Trigger predicates (`INSERTING`, `UPDATING`, `DELETING`) allow a single trigger 
+--      to handle multiple DML actions differently.
