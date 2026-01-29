@@ -57,3 +57,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_banking AS
     END sp_transfer;
 END pkg_banking;
 /
+
+-- Day 29: Transaction Isolation and Serialization Safety
+-- Concept: Ordered locking (acquiring locks in a deterministic order, e.g. lower account ID first) 
+-- prevents deadlocks where Session A holds Lock 1 and waits for Lock 2, while Session B holds 
+-- Lock 2 and waits for Lock 1.
