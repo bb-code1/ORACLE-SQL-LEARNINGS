@@ -16,3 +16,12 @@ SELECT a.account_number, a.customer_name, a.balance AS current_balance,
        (a.balance - NVL(t.net_tx_amount, 0)) AS initial_starting_balance
 FROM accounts a
 LEFT JOIN tx_summary t ON a.account_number = t.account_number;
+
+-- Day 30: Financial Transaction Auditing using Analytics
+-- Concept: Analytics functions identify deviations from average transaction amounts.
+
+SELECT transaction_id, account_number, amount, transaction_date,
+       AVG(amount) OVER (PARTITION BY account_number) AS avg_account_tx,
+       amount - AVG(amount) OVER (PARTITION BY account_number) AS deviation_from_avg
+FROM transactions
+WHERE amount > 500;
